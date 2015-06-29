@@ -1,68 +1,54 @@
-h1. Bees with Machine Guns!
+# Bees with Machine Guns!
 
 A utility for arming (creating) many bees (micro EC2 instances) to attack (load test) targets (web applications).
 
 Also, retribution for "this shameful act":http://kottke.org/10/10/tiny-catapult-for-throwing-pies-at-bees against a proud hive.
 
-h2. Dependencies
+## Dependencies
 
 * Python 2.6
 * boto
 * paramiko
 
-h2. Installation for users
+## Installation
 
-Preferred:
-
-<pre>
-pip install beeswithmachineguns
-</pre>
-
-or, if you must:
-
-<pre>
-easy_install beeswithmachineguns
-</pre>
-
-h2. Installation for developers (w/ virtualenv + virtualenvwrapper)
-
-<pre>
-git clone git://github.com/newsapps/beeswithmachineguns.git
+```
+git clone https://github.com/joystickinteractive/beeswithmachineguns
 cd beeswithmachineguns
-mkvirtualenv --no-site-packages bees
-easy_install pip
 pip install -r requirements.txt
-</pre>
+```
 
-h2. Configuring AWS credentials
+Put bees on your `$PATH` in order to use it from any directory. 
+
+## Configuring AWS credentials
 
 Bees uses boto to communicate with EC2 and thus supports all the same methods of storing credentials that it does.  These include declaring environment variables, machine-global configuration files, and per-user configuration files. You can read more about these options on "boto's configuration page":http://code.google.com/p/boto/wiki/BotoConfig.
 
 At minimum, create a .boto file in your home directory with the following contents:
 
-<pre>
+```
 [Credentials]
 aws_access_key_id = <your access key>
 aws_secret_access_key = <your secret key>
-</pre>
+```
 
 The credentials used must have sufficient access to EC2.
 
 Make sure the .boto file is only accessible by the current account:
 
-<pre>
+```
 chmod 600 .boto
-</pre>
+```
 
 h2. Usage
 
 A typical bees session looks something like this:
 
-<pre>
+```
 bees up -s 4 -g public -k frakkingtoasters
 bees attack -n 10000 -c 250 -u http://www.ournewwebbyhotness.com/
 bees down
-</pre>
+```
 
 This spins up 4 servers in security group 'public' using the EC2 keypair 'frakkingtoasters', whose private key is expected to reside at ~/.ssh/frakkingtoasters.pem.
 
@@ -74,23 +60,15 @@ Lastly, it spins down the 4 servers.  *Please remember to do this*--we aren't re
 
 For complete options type:
 
-<pre>
+```
 bees -h
-</pre>
+```
 
-h2. The caveat! (PLEASE READ)
-
-(The following was cribbed from our "original blog post about the bees":http://blog.apps.chicagotribune.com/2010/07/08/bees-with-machine-guns/.)
-
-If you decide to use the Bees, please keep in mind the following important caveat: they are, more-or-less a distributed denial-of-service attack in a fancy package and, therefore, if you point them at any server you don’t own you will behaving *unethically*, have your Amazon Web Services account *locked-out*, and be *liable* in a court of law for any downtime you cause.
-
-You have been warned.
-
-h2. Bugs
+## Bugs
 
 Please log your bugs on the "Github issues tracker":http://github.com/newsapps/beeswithmachineguns/issues.
 
-h2. Credits
+## Credits
 
 The bees are a creation of the News Applications team at the Chicago Tribune--visit "our blog":http://apps.chicagotribune.com/ and read "our original post about the project":http://blog.apps.chicagotribune.com/2010/07/%2008/bees-with-machine-guns/.
 
@@ -98,6 +76,6 @@ Initial refactoring code and inspiration from "Jeff Larson":http://github.com/th
 
 Thanks to everyone who reported bugs against the alpha release.
 
-h2. License
+## License
 
 MIT.

@@ -6,3 +6,4 @@ build
 MANIFEST
 dist
 env
+.DS_Store
